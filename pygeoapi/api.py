@@ -1562,7 +1562,7 @@ class API:
                     properties.append((k, v))
                 else:
                     LOGGER.debug(f'Adding extra filter {k}={v}')
-                    extra_params[str(k).lower()] = v
+                    extra_params[k] = v
         LOGGER.debug('processing sort parameter')
         val = request.params.get('sortby')
 

@@ -394,7 +394,7 @@ class OracleProvider(BaseProvider):
         skip_geometry=False,
         q=None,
         filterq=None,
-        extra_params={},
+        extra_params=None,
         **kwargs,
     ):
         """
@@ -420,7 +420,8 @@ class OracleProvider(BaseProvider):
 
         # Check mandatory filter properties
         LOGGER.debug(f"properties contains: {properties}")
-        LOGGER.debug(f"Extra Params contains: {extra_params}")
+        if extra_params is not None:
+            LOGGER.debug(f"Extra Params contains: {extra_params}")
         property_dict = dict(properties)
         if self.mandatory_properties:
             for mand_col in self.mandatory_properties:
@@ -629,7 +630,7 @@ class OracleProvider(BaseProvider):
 
         return id
 
-    def get(self, identifier, extra_params={}, **kwargs):
+    def get(self, identifier, extra_params=None, **kwargs):
         """
         Query the provider for a specific
         feature id e.g: /collections/ocrl_lakes/items/1

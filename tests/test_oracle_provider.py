@@ -51,6 +51,7 @@ class SqlManipulator:
         bbox,
         source_crs,
         properties,
+        extra_params=None,
     ):
         sql = "ID = 10 AND :foo != :bar"
 
@@ -74,6 +75,7 @@ class SqlManipulator:
         bind_variables,
         sql_manipulator_options,
         identifier,
+        extra_params=None,
     ):
         sql_query = f"{sql_query} AND 'auth' = 'you arent allowed'"
 
