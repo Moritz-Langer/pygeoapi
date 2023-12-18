@@ -125,9 +125,3 @@ pygeoapi/db.sqlite3
 
 # Pycharm project files
 .idea
-
-#yml
-ama-pygeoapi-config.yml
-
-.gitignore
-ama-els-openapi.yml
