@@ -725,7 +725,6 @@ class OracleProvider(BaseProvider):
                     language,
                     filterq,
                     extra_params=extra_params,
-
                 )
 
             # Clean up placeholders that aren't used by the
@@ -811,7 +810,9 @@ class OracleProvider(BaseProvider):
 
         return id
 
-    def get(self, identifier, crs_transform_spec=None, extra_params=None, **kwargs):
+    def get(
+        self, identifier, crs_transform_spec=None, extra_params=None, **kwargs
+    ):
         """
         Query the provider for a specific
         feature id e.g: /collections/ocrl_lakes/items/1
