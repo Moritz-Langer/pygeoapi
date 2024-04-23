@@ -43,6 +43,9 @@ PORT = os.environ.get("PYGEOAPI_ORACLE_PORT", "1521")
 
 
 class SqlManipulator:
+    def __init__(self, provider_def):
+        self.provider_def = provider_def
+
     def process_query(
         self,
         db,
@@ -437,7 +440,10 @@ def test_get_with_extra_properties(config_extra_properties):
     p = OracleProvider(config_extra_properties)
     result = p.get(5)
 
-    assert result["properties"]["tooltip"] == "Here the name is L. Erie!"
+    assert (
+        result["properties"]["tooltip"] ==
+        "Here the name is L. Erie!"
+    )
 
 
 def test_create(config, create_geojson):
@@ -597,19 +603,22 @@ def test_query_can_mandate_properties_which_are_not_returned(config):
         **config,
         # 'name' has to be filtered, but only 'wiki_link' is returned
         "properties": ["id", "wiki_link"],
-        "mandatory_properties": ["name"],
+        "mandatory_properties": ["name"]
     }
 
     p = OracleProvider(config)
     result = p.query(properties=[("name", "Aral Sea")])
 
-    (feature,) = result["features"]
+    (feature,) = result['features']
     # id is handled separately, so only wiki link and not name must be here
-    assert feature["properties"].keys() == {"wiki_link"}
+    assert feature['properties'].keys() == {"wiki_link"}
 
 
 def test_query_mandatory_properties_must_be_specified(config):
-    config = {**config, "mandatory_properties": ["name"]}
+    config = {
+        **config,
+        "mandatory_properties": ["name"]
+    }
 
     p = OracleProvider(config)
     with pytest.raises(ProviderInvalidQueryError):
@@ -621,4 +630,5 @@ def test_extra_params_are_passed_to_sql_manipulator(config_manipulator):
 
     p = OracleProvider(config_manipulator)
     response = p.query(extra_params=extra_params)
-    assert not response["features"]
+
+    assert not response['features']
