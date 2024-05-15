@@ -1190,7 +1190,6 @@ def get_collection_item(api: API, request: APIRequest,
     return headers, HTTPStatus.OK, to_json(content, api.pretty_print)
 
 
-# @staticmethod
 def create_crs_transform_spec(
         config: dict, query_crs_uri: Optional[str] = None) -> Union[None, CrsTransformSpec]:  # noqa
     """
@@ -1253,7 +1252,6 @@ def create_crs_transform_spec(
         return None
 
 
-# @staticmethod
 def set_content_crs_header(
         headers: dict, config: dict, query_crs_uri: Optional[str] = None):
     """
